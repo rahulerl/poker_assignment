@@ -44,8 +44,8 @@ wining_count_player1([H|T], Acc) when H /= [] ->
 get_Hand([], _,_) -> high_card;
 
 get_Hand([H|T], Mod,P) ->
-    V = get_Hand_type(H, Mod, P),
-    if V /= false -> V;
+    Hand_type = get_Hand_type(H, Mod, P),
+    if Hand_type /= false -> Hand_type;
     true -> get_Hand(T, Mod, P)
     end.
 
