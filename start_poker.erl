@@ -10,7 +10,7 @@ start() ->
    {ok, File} = file:open("poker.txt",[read]),
    {ok, Txt} = file:read(File, 1024 * 1024), 
    NewList = re:split(Txt,(["\r\n"]),[{return,list}]),
-   wining_count_player1(NewList, 0).
+   io:fwrite("~nPlayer1 win = ~p~n",[wining_count_player1(NewList, 0)]).
 
 % ---------------------------------------------------
 
@@ -31,8 +31,8 @@ wining_count_player1([H|T], Acc) when H /= [] ->
               0
             end;
     true -> 
-        B = pokerHand:highest_card(Player1,Player2),
-        Val = if B == true ->
+        Is_player1_has_highCard = pokerHand:highest_card(Player1,Player2),
+        Val = if Is_player1_has_highCard == true ->
                 1;
               true -> 0
               end
